@@ -475,10 +475,10 @@ When closed, users see:
 
 ```sh
 # Clone the repository
-git clone https://github.com/redwheeler3/penta-hub-coop-connect.git
+git clone https://github.com/redwheeler3/penta-coop-website.git
 
 # Navigate to project directory
-cd penta-hub-coop-connect
+cd penta-coop-website
 
 # Install dependencies
 npm install
@@ -616,7 +616,7 @@ The site supports:
 
 ## Repository
 
-- **GitHub**: https://github.com/redwheeler3/penta-hub-coop-connect
+- **GitHub**: https://github.com/redwheeler3/penta-coop-website
 - **Live Site**: https://www.pentacoop.com
 
 ## Credits
