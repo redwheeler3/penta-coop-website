@@ -2,7 +2,7 @@
 
 A modern, performant website for Penta Housing Co-Op built with React, TypeScript, and Vite. The site provides information about the cooperative housing community and includes an application system for prospective members.
 
-**Live URL**: https://staging.pentacoop.com
+**Live URL**: https://www.pentacoop.com
 
 ## Project Overview
 
@@ -21,11 +21,11 @@ This is a single-page application (SPA) built for Penta Housing Co-Op, a coopera
 
 - **Framework**: React 18.3 with TypeScript
 - **Build Tool**: Vite 5.4
-- **Routing**: React Router v6
+- **Routing**: React Router v6 with `HashRouter`
 - **UI Components**: shadcn/ui (Radix UI primitives)
 - **Styling**: Tailwind CSS with custom theme
 - **State Management**: React hooks (useState, useEffect, useCallback)
-- **Form Handling**: React Hook Form with Zod validation
+- **Form Handling**: Google Forms integration via a hidden runtime form submission
 - **Analytics**: Google Analytics (gtag.js)
 
 ### Project Structure
@@ -102,26 +102,37 @@ const Navigation = memo(() => {
 
 #### 3. **Centralized Configuration**
 
-All constants and configuration live in `src/config/constants.ts`:
+Operational settings live in `src/config/constants.ts`:
 
 ```typescript
-export const APP_CONFIG = {
-  APPLICATIONS_OPEN: false,
-  GOOGLE_FORM_URL: 'https://applications.pentacoop.com/',
-  // ...
+export const FORM_CONFIG = {
+  ARE_APPLICATIONS_OPEN: false,
+  APPLICATION_FORM_URL: 'https://applications.pentacoop.com/',
+  MAILING_LIST_SIGNUP: {
+    name: 'Email Signup',
+    submitUrl: 'https://docs.google.com/forms/d/e/.../formResponse',
+    fields: {
+      EMAIL_ADDRESS: 'emailAddress',
+      UNIT_PREFERENCE: 'entry.2074227584',
+    },
+  },
 } as const;
 
-export const EXTERNAL_LINKS = {
-  DESIGNER_WEBSITE: 'https://www.jeffo.net',
-  CHF_BC: 'https://www.chf.bc.ca',
-  // ...
+export const ANALYTICS_EVENTS = {
+  CTA_CLICK: 'cta_click',
+  NAVIGATION_CLICK: 'navigation_click',
+  EXTERNAL_LINK_CLICK: 'external_link_click',
+  FORM_START: 'form_start',
+  FORM_SUBMIT: 'form_submit',
+  FORM_ERROR: 'form_error',
+  FORM_ABANDONMENT: 'form_abandonment',
 } as const;
 ```
 
 **Benefits**:
-- Single source of truth for configuration
+- Single source of truth for form and analytics settings
 - Type-safe with TypeScript `as const`
-- Easy to update URLs, form fields, and settings
+- Easier updates to form endpoints, fields, and event names
 - Better maintainability
 
 #### 4. **Type Safety**
@@ -271,7 +282,7 @@ Example event data:
   event: 'cta_click',
   button_name: 'Apply Now',
   button_location: 'hero',
-  page_location: 'https://staging.pentacoop.com/'
+  page_location: 'https://www.pentacoop.com/'
 }
 ```
 
@@ -427,24 +438,23 @@ form.appendChild(emailInput);
 
 **Configuration** (in `constants.ts`):
 ```typescript
-export const FORM_FIELDS = {
-  EMAIL: 'emailAddress',
-  BEDROOM_PREFERENCE: 'entry.2074227584',
-};
-
-export const BEDROOM_PREFERENCES = {
-  ONE_BEDROOM: {
-    id: '1-bedroom',
-    label: '1 bedroom - 1 or 2 adults',
-    formValue: '1 bedroom (1 or 2 adults)',
+export const FORM_CONFIG = {
+  ARE_APPLICATIONS_OPEN: false,
+  APPLICATION_FORM_URL: 'https://applications.pentacoop.com/',
+  MAILING_LIST_SIGNUP: {
+    name: 'Email Signup',
+    submitUrl: 'https://docs.google.com/forms/d/e/.../formResponse',
+    fields: {
+      EMAIL_ADDRESS: 'emailAddress',
+      UNIT_PREFERENCE: 'entry.2074227584',
+    },
   },
-  // ... other preferences
-};
+} as const;
 ```
 
 ### Application Status Toggle
 
-The application system can be toggled on/off via `APP_CONFIG.APPLICATIONS_OPEN` in `constants.ts`. When open, users see:
+The application system can be toggled on/off via `FORM_CONFIG.ARE_APPLICATIONS_OPEN` in `constants.ts`. When open, users see:
 - Current available unit details
 - Application form link
 - Deadline information
@@ -458,14 +468,14 @@ When closed, users see:
 
 ### Prerequisites
 
-- Node.js (v16 or higher recommended)
-- npm or yarn
+- Node.js 18+ recommended
+- npm
 
 ### Setup
 
 ```sh
 # Clone the repository
-git clone <YOUR_GIT_URL>
+git clone https://github.com/redwheeler3/penta-hub-coop-connect.git
 
 # Navigate to project directory
 cd penta-hub-coop-connect
@@ -528,7 +538,7 @@ This command:
 
 The site uses a custom domain configured via `public/CNAME`:
 ```
-staging.pentacoop.com
+www.pentacoop.com
 ```
 
 ### Build Configuration
@@ -604,15 +614,10 @@ The site supports:
 - Use the `useAnalytics` hook for tracking new interactions
 - Add constants to `constants.ts` rather than hardcoding values
 
-## Support & Documentation
+## Repository
 
-- **Project URL**: https://lovable.dev/projects/c1e6eee2-a36f-4cd6-990b-e0d8741478dc
-- **Live Site**: https://staging.pentacoop.com
-- **GitHub**: [Repository URL]
-
-## License
-
-[Add license information]
+- **GitHub**: https://github.com/redwheeler3/penta-hub-coop-connect
+- **Live Site**: https://www.pentacoop.com
 
 ## Credits
 
