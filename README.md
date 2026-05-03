@@ -549,7 +549,6 @@ export default defineConfig({
   base: "./",  // Relative paths for assets
   plugins: [
     react(),
-    componentTagger(), // Development only
   ],
   // ...
 });
@@ -563,10 +562,10 @@ The site uses relative paths (`base: "./"`) for asset loading, making it work on
 
 ### Image Assets
 
-Images are stored in `public/lovable-uploads/` and referenced using:
+Images are stored in `public/penta-images/` and referenced using:
 ```typescript
 const BASE_URL = import.meta.env.BASE_URL;
-<img src={`${BASE_URL}lovable-uploads/image.png`} />
+<img src={`${BASE_URL}penta-images/hero-exterior.jpg`} />
 ```
 
 ## Testing Recommendations
@@ -619,6 +618,25 @@ The site supports:
 - **GitHub**: https://github.com/redwheeler3/penta-coop-website
 - **Live Site**: https://www.pentacoop.com
 
-## Credits
+## License
 
-Website designed by [Jeff Oriecuia](https://www.jeffo.net)
+Unless otherwise noted, the source code in this repository is licensed under the [MIT License](./LICENSE).
+
+The MIT license does **not** automatically apply to the following non-code or branding materials included in this repository:
+
+- Penta Housing Co-Op names, logos, marks, and other trademark-like identifiers
+- Photographs, social images, favicons, and other branding or creative assets
+- Organizational content or other materials that may be owned by Penta Housing Co-Op or another rights holder and are not intended for unrestricted reuse
+
+Examples in this repository include:
+
+- `public/penta-images/hero-exterior.jpg`
+- `public/penta-images/courtyard-garden.jpg`
+- `public/penta-images/community-playground.jpg`
+- `public/favicon.ico`
+- `public/house-favicon.png`
+- `public/social-preview.png`
+
+All rights are reserved for the excluded materials above unless separate written permission is granted by the relevant rights holder.
+
+Third-party dependencies, services, links, documents, external forms, analytics, and externally hosted assets referenced by this repository remain subject to their own licenses or terms and are not relicensed by this repository's MIT License.

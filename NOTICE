@@ -1,0 +1,22 @@
+## License
+
+Unless otherwise noted, the source code in this repository is licensed under the [MIT License](./LICENSE).
+
+The MIT license does **not** automatically apply to the following non-code or branding materials included in this repository:
+
+- Penta Housing Co-Op names, logos, marks, and other trademark-like identifiers
+- Photographs, social images, favicons, and other branding or creative assets
+- Organizational content or other materials that may be owned by Penta Housing Co-Op or another rights holder and are not intended for unrestricted reuse
+
+Examples in this repository include:
+
+- `public/penta-images/hero-exterior.jpg`
+- `public/penta-images/courtyard-garden.jpg`
+- `public/penta-images/community-playground.jpg`
+- `public/favicon.ico`
+- `public/house-favicon.png`
+- `public/social-preview.png`
+
+All rights are reserved for the excluded materials above unless separate written permission is granted by the relevant rights holder.
+
+Third-party dependencies, services, links, documents, external forms, analytics, and externally hosted assets referenced by this repository remain subject to their own licenses or terms and are not relicensed by this repository's MIT License.
