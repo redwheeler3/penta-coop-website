@@ -40,4 +40,6 @@ const Toggle = React.forwardRef<
 
 Toggle.displayName = TogglePrimitive.Root.displayName
 
+// toggleVariants is exported for components that need consistent toggle styling.
+// eslint-disable-next-line react-refresh/only-export-components
 export { Toggle, toggleVariants }

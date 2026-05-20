@@ -26,4 +26,6 @@ const Toaster = ({ ...props }: ToasterProps) => {
   )
 }
 
+// toast is Sonner's imperative API and is intentionally re-exported with the Toaster component.
+// eslint-disable-next-line react-refresh/only-export-components
 export { Toaster, toast }
