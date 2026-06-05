@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { FORM_CONFIG } from "@/config/constants";
+import { FORM_CONFIG, UNIT_LISTING } from "@/config/constants";
 
 // Move EmailSignupForm outside to prevent re-creation on every render
 const EmailSignupForm = ({ 
@@ -284,19 +284,19 @@ const Apply = () => {
                   <h3 className="text-lg font-semibold mb-4">Current Available Unit</h3>
                   <div className="grid md:grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="font-medium">Unit Type:</span> 2 Bedroom
+                      <span className="font-medium">Unit Type:</span> {UNIT_LISTING.UNIT_TYPE}
                     </div>
                     <div>
-                      <span className="font-medium">Monthly Housing Charge:</span> $1,092
+                      <span className="font-medium">Monthly Housing Charge:</span> {UNIT_LISTING.MONTHLY_HOUSING_CHARGE}
                     </div>
                     <div>
-                      <span className="font-medium">Move-in Date:</span> September 1, 2024
+                      <span className="font-medium">Move-in Date:</span> {UNIT_LISTING.MOVE_IN_DATE}
                     </div>
                     <div>
-                      <span className="font-medium">Application Deadline:</span> June 26, 2024
+                      <span className="font-medium">Application Deadline:</span> {UNIT_LISTING.APPLICATION_DEADLINE}
                     </div>
                     <div className="md:col-span-2">
-                      <span className="font-medium">Household Requirements:</span> 1 or 2 adults PLUS 1 or more children under 18
+                      <span className="font-medium">Household Requirements:</span> {UNIT_LISTING.HOUSEHOLD_REQUIREMENTS}
                     </div>
                   </div>
                 </div>
