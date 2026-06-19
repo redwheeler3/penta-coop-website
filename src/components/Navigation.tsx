@@ -1,8 +1,9 @@
 
 import { useState, useCallback, memo } from "react";
 import { Button } from "@/components/ui/button";
-import { Home, Lock, Menu, X } from "lucide-react";
+import { Lock, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import HouseIcon from "@/components/HouseIcon";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Navigation = memo(() => {
@@ -25,7 +26,7 @@ const Navigation = memo(() => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center min-w-0" onClick={() => handleNavClick('home', 'logo')}>
-            <Home className="h-8 w-8 text-green-600 mr-2 sm:mr-3 flex-shrink-0" />
+            <HouseIcon className="h-8 w-8 text-green-600 mr-2 sm:mr-3 flex-shrink-0" />
             <h1 className="text-lg sm:text-xl font-bold text-gray-900 truncate">
               <span className="hidden sm:inline">Penta Housing Co-Op</span>
               <span className="sm:hidden">Penta Co-Op</span>
