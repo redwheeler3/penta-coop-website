@@ -25,7 +25,7 @@ const Navigation = memo(() => {
     <nav className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center min-w-0" onClick={() => handleNavClick('home', 'logo')}>
+          <Link to="/" className="flex items-center min-w-0 rounded-md px-2 py-1 transition-colors hover:bg-accent hover:text-accent-foreground" onClick={() => handleNavClick('home', 'logo')}>
             <HouseIcon className="h-8 w-8 text-green-600 mr-2 sm:mr-3 flex-shrink-0" />
             <h1 className="text-lg sm:text-xl font-bold text-gray-900 truncate">
               <span className="hidden sm:inline">Penta Housing Co-Op</span>
