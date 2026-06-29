@@ -4,11 +4,11 @@
 
 // Current available unit listing details (shown when ARE_APPLICATIONS_OPEN is true)
 export const UNIT_LISTING = {
-  UNIT_TYPE: '2 Bedroom',
-  MONTHLY_HOUSING_CHARGE: '$1,092',
-  MOVE_IN_DATE: 'September 1, 2024',
-  APPLICATION_DEADLINE: 'June 26, 2024',
-  HOUSEHOLD_REQUIREMENTS: '1 or 2 adults PLUS 1 or more children under 18',
+  UNIT_TYPE: '3 Bedroom',
+  MONTHLY_HOUSING_CHARGE: '$1,226',
+  MOVE_IN_DATE: 'October 1, 2026 (this date may shift as we get the unit ready)',
+  APPLICATION_DEADLINE: 'July 20, 2026',
+  HOUSEHOLD_REQUIREMENTS: '1 or 2 adults PLUS 2 or more children under 18',
 } as const;
 
 // Form configuration including field mappings and names
