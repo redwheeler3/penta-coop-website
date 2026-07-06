@@ -6,7 +6,7 @@
 export const UNIT_LISTING = {
   UNIT_TYPE: '3 Bedroom',
   MONTHLY_HOUSING_CHARGE: '$1,226',
-  MOVE_IN_DATE: 'October 1, 2026 (this date may shift as we get the unit ready)',
+  MOVE_IN_DATE: 'October 1, 2026 (subject to change)',
   APPLICATION_DEADLINE: 'July 31, 2026',
   HOUSEHOLD_REQUIREMENTS: '1 or 2 adults PLUS 2 or more children under 18',
 } as const;
