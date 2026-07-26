@@ -4,6 +4,13 @@ A modern, performant website for Penta Housing Co-Op built with React, TypeScrip
 
 **Live URL**: https://www.pentacoop.com
 
+> **Current deployment model:** Vite builds static HTML for the public pages (`/`,
+> `/about.html`, `/apply.html`, and `/members.html`). React is used only during the
+> build to render the existing page templates; it is not sent to visitors. Runtime
+> interaction and GA4 tracking live in `src/site.ts`. The older SPA architecture
+> notes below are retained as historical source-structure context and should not be
+> used to add client-side routing or analytics.
+
 ## Project Overview
 
 This is a single-page application (SPA) built for Penta Housing Co-Op, a cooperative housing community in Vancouver's Point Grey neighbourhood. The website features:

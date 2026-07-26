@@ -3,22 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { FileText, MessageSquare, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
-import { usePageTitle } from "@/hooks/usePageTitle";
-import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Members = () => {
-  usePageTitle("Members - Penta Housing Co-Op");
-  const { trackExternalLink } = useAnalytics();
-
-  const trackResourceClick = (resourceName: string, linkName: string) => {
-    if (typeof window.gtag !== 'undefined') {
-      window.gtag('event', 'resource_link_click', {
-        resource_category: resourceName,
-        link_name: linkName,
-        page_location: window.location.href,
-      });
-    }
-  };
 
   const memberResources = [
     {
@@ -89,7 +75,6 @@ const Members = () => {
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2"
                         data-resource-category={resource.title}
-                        onClick={() => trackResourceClick(resource.title, link.text)}
                       >
                         {link.text}
                       </a>
@@ -110,21 +95,13 @@ const Members = () => {
               <p className="text-gray-600 mb-2">
                 For help with accessing Google Drive or Discord, or for technical support with the website:
               </p>
-              <p className="text-sm mb-4"><strong>Email:</strong> <a href="mailto:techsupport@pentacoop.com" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline" onClick={() => trackExternalLink('Tech Support Email', 'mailto:techsupport@pentacoop.com')}>techsupport@pentacoop.com</a></p>
+              <p className="text-sm mb-4"><strong>Email:</strong> <a href="mailto:techsupport@pentacoop.com" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">techsupport@pentacoop.com</a></p>
               
               <Accordion type="single" collapsible className="mb-4">
                 <AccordionItem value="telus-help">
                   <AccordionTrigger 
                     className="text-left font-medium text-sm"
                     data-accordion-name="TELUS Email Help"
-                    onClick={() => {
-                      if (typeof window.gtag !== 'undefined') {
-                        window.gtag('event', 'accordion_click', {
-                          accordion_name: 'TELUS Email Help',
-                          page_location: window.location.href,
-                        });
-                      }
-                    }}
                   >
                     TELUS Email Users: Accessing File Repository Documents
                   </AccordionTrigger>
@@ -173,7 +150,7 @@ const Members = () => {
                 <p className="text-gray-600 mb-2">Contact for all maintenance issues:</p>
                 <div className="space-y-1">
                   <p className="text-sm"><strong>Phone:</strong> <a href="tel:604-736-8775" className="text-green-600 hover:underline">(604) 736-8775</a></p>
-                  <p className="text-sm"><strong>Email:</strong> <a href="mailto:tpm_maintenance@tpmmanagement.ca" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline" onClick={() => trackExternalLink('TPM Maintenance Email', 'mailto:tpm_maintenance@tpmmanagement.ca')}>tpm_maintenance@tpmmanagement.ca</a></p>
+                  <p className="text-sm"><strong>Email:</strong> <a href="mailto:tpm_maintenance@tpmmanagement.ca" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">tpm_maintenance@tpmmanagement.ca</a></p>
                 </div>
               </div>
               <div className="bg-red-50 border border-red-200 rounded-lg p-3">

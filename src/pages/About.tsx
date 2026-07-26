@@ -3,12 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Home, Users, Leaf, Heart, MapPin, Train, ShoppingBag, GraduationCap, Mountain, Waves, Shield, HandHeart } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
-import { usePageTitle } from "@/hooks/usePageTitle";
-import { useAnalytics } from "@/hooks/useAnalytics";
 
 const About = () => {
-  usePageTitle("About - Penta Housing Co-Op");
-  const { trackCTA, trackExternalLink } = useAnalytics();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
@@ -58,7 +54,7 @@ const About = () => {
                   </div>
                 </div>
                 
-                <Link to="/apply" onClick={() => trackCTA('Join Our Community', 'About Penta Section')}>
+                <Link to="/apply">
                   <Button className="bg-green-600 hover:bg-green-700 hover-scale">
                     Join Our Community
                   </Button>
@@ -148,7 +144,6 @@ const About = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors hover-scale shadow-md text-sm"
-                  onClick={() => trackExternalLink('Point Grey Guide', 'https://govancity.com/neighbourhoods/point-grey/')}
                 >
                   Explore Point Grey Neighbourhood Guide
                 </a>
@@ -253,7 +248,6 @@ const About = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors hover-scale shadow-md"
-                  onClick={() => trackExternalLink('CHF BC', 'https://www.chf.bc.ca')}
                 >
                   Co-op Housing Federation of BC
                 </a>
@@ -262,7 +256,6 @@ const About = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors hover-scale shadow-md"
-                  onClick={() => trackExternalLink('CHF Canada', 'https://chfcanada.coop')}
                 >
                   Co-op Housing Federation of Canada
                 </a>

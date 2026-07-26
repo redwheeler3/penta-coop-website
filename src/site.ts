@@ -48,7 +48,18 @@ document.addEventListener("click", (event) => {
 });
 
 document.querySelectorAll<HTMLElement>("[data-accordion-name]").forEach((trigger) => {
-  trigger.addEventListener("click", () => track("accordion_click", { accordion_name: trigger.dataset.accordionName }));
+  trigger.addEventListener("click", () => {
+    const contentId = trigger.getAttribute("aria-controls");
+    const content = contentId ? document.getElementById(contentId) : null;
+    if (!content) return;
+    const isOpen = trigger.getAttribute("aria-expanded") !== "true";
+    trigger.setAttribute("aria-expanded", String(isOpen));
+    trigger.dataset.state = isOpen ? "open" : "closed";
+    content.hidden = !isOpen;
+    content.dataset.state = isOpen ? "open" : "closed";
+    content.parentElement?.setAttribute("data-state", isOpen ? "open" : "closed");
+    track("accordion_click", { accordion_name: trigger.dataset.accordionName });
+  });
 });
 
 const signup = document.querySelector<HTMLFormElement>("[data-email-signup]");
