@@ -10,6 +10,19 @@ const track = (name: string, params: Record<string, unknown> = {}) => {
   window.gtag?.("event", name, { page_location: window.location.href, ...params });
 };
 
+const showToast = (message: string, variant: "success" | "error" = "success") => {
+  const toast = document.createElement("div");
+  toast.setAttribute("role", "status");
+  toast.className = `fixed bottom-4 right-4 z-50 max-w-sm rounded-lg border px-4 py-3 text-sm font-medium shadow-lg ${
+    variant === "success"
+      ? "border-green-200 bg-green-50 text-green-800"
+      : "border-red-200 bg-red-50 text-red-800"
+  }`;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  window.setTimeout(() => toast.remove(), 5000);
+};
+
 track("page_view", { page_path: window.location.pathname, page_title: document.title });
 
 document.querySelector<HTMLButtonElement>("[data-menu-toggle]")?.addEventListener("click", () => {
@@ -47,6 +60,9 @@ signup?.querySelectorAll<HTMLButtonElement>("button[role=checkbox]").forEach((bu
     input.checked = !input.checked;
     button.setAttribute("aria-checked", String(input.checked));
     button.dataset.state = input.checked ? "checked" : "unchecked";
+    button.innerHTML = input.checked
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>'
+      : "";
   });
 });
 signup?.querySelector<HTMLInputElement>("input[type=email]")?.addEventListener("focus", () => {
@@ -60,7 +76,7 @@ signup?.addEventListener("submit", (event) => {
   const preferences = [...signup.querySelectorAll<HTMLInputElement>("input[type=checkbox]:checked")];
   if (!email?.value || preferences.length === 0) {
     track("form_error", { form_name: "Email Signup", error_type: "Missing Information" });
-    alert("Please fill in both email and unit preferences.");
+    showToast("Please fill in both email and unit preferences.", "error");
     return;
   }
   const form = new FormData();
@@ -68,8 +84,8 @@ signup?.addEventListener("submit", (event) => {
   preferences.forEach((input) => form.append("entry.2074227584", input.value));
   track("form_submit", { form_name: "Email Signup", bedroom_preferences: preferences.map(({ value }) => value).join(","), num_preferences: preferences.length, form_destination: "google_forms" });
   fetch("https://docs.google.com/forms/d/e/1FAIpQLSfvce57NjEBBI7qx3l7eYCsjAy3j4yMqZVnjbclGOfZ9uDFIw/formResponse", { method: "POST", mode: "no-cors", body: form })
-    .then(() => { signup.reset(); alert("Thank you! You've been added to our mailing list."); })
-    .catch(() => { track("form_error", { form_name: "Email Signup", error_type: "Submission Failed" }); alert("Failed to submit. Please try again."); });
+    .then(() => { signup.reset(); showToast("Thank you! You've been added to our mailing list."); })
+    .catch(() => { track("form_error", { form_name: "Email Signup", error_type: "Submission Failed" }); showToast("Failed to submit. Please try again.", "error"); });
 });
 
 window.addEventListener("pagehide", () => {
