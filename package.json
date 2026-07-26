@@ -17,8 +17,6 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "baseline-browser-mapping": "^2.9.9",
-    "caniuse-lite": "^1.0.30001760",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
