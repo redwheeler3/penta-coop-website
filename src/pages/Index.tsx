@@ -156,12 +156,21 @@ const Index = () => {
 
       {/* Footer Credit */}
       <footer className="py-4 px-4 bg-gray-100">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto text-center space-y-2">
+          <p className="text-xs text-gray-500">
+            <Link to="/privacy" className="hover:text-gray-700 transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="mx-2" aria-hidden="true">·</span>
+            <Link to="/terms" className="hover:text-gray-700 transition-colors">
+              Terms of Service
+            </Link>
+          </p>
           <p className="text-xs text-gray-500">
             Website designed by{" "}
-            <a 
+            <a
               href="https://www.jeffo.net"
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-700 transition-colors"
               onClick={() => trackExternalLink('Designer Website', 'https://www.jeffo.net')}
