@@ -186,23 +186,24 @@ const Privacy = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-gray-900">8. Third-Party Services and Sign-In</h2>
+            <h2 className="text-xl font-semibold text-gray-900">8. Third-Party Services, Google Sign-In, and Google APIs</h2>
             <p>
               Some of our website and application features rely on third-party services, including a web
-              analytics service, an embedded form service, a third-party sign-in (authentication)
-              provider, and third-party services that let us import the responses you submit so we can
-              review them.
+              analytics service, an embedded form service, and Google sign-in together with Google APIs
+              that let authorized committee members review the applications you submit.
             </p>
             <p>
-              When you sign in through a third-party authentication provider, we receive only basic profile
-              information (such as your name and email address) needed to verify your identity and give
-              authorized committee members access to the review tool. When we import responses you have
-              submitted through a third-party form or spreadsheet service, we access those responses on a
-              read-only basis, solely to process and review your submission.
+              When you sign in with Google, we receive only basic profile information (your name and email
+              address) needed to verify your identity and give authorized committee members access to our
+              internal application-review tool. Signing in does not grant the tool access to your Google
+              Drive, Gmail, or other Google data. Separately, an authorized administrator connects the
+              single Google Sheet that holds membership-application responses, using Google's file picker;
+              this grants read-only access to that one file only, so the committee can review submitted
+              applications. We do not access any other files in anyone's Google Drive.
             </p>
             <p>
-              We use information obtained through third-party sign-in and third-party services only to
-              provide and improve the features described in this policy. In particular:
+              We use information obtained through Google sign-in and Google APIs only to provide and improve
+              the features described in this policy. In particular:
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li>
@@ -226,10 +227,26 @@ const Privacy = () => {
               </li>
             </ul>
             <p>
-              Our use and transfer of information received from third-party authentication providers and
-              services adheres to those providers' user data policies, including any applicable limited-use
-              requirements. These third parties handle your information under their own privacy policies,
-              which we encourage you to review.
+              Penta's use and transfer of information received from Google APIs to any other app will
+              adhere to the{" "}
+              <a
+                href="https://developers.google.com/terms/api-services-user-data-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-700 underline hover:text-green-800"
+              >
+                Google API Services User Data Policy
+              </a>
+              , including the Limited Use requirements. Google handles your information under its own{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-700 underline hover:text-green-800"
+              >
+                privacy policy
+              </a>
+              , which we encourage you to review.
             </p>
           </section>
 
