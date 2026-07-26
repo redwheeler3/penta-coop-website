@@ -88,6 +88,7 @@ const Members = () => {
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2"
+                        data-resource-category={resource.title}
                         onClick={() => trackResourceClick(resource.title, link.text)}
                       >
                         {link.text}
@@ -115,6 +116,7 @@ const Members = () => {
                 <AccordionItem value="telus-help">
                   <AccordionTrigger 
                     className="text-left font-medium text-sm"
+                    data-accordion-name="TELUS Email Help"
                     onClick={() => {
                       if (typeof window.gtag !== 'undefined') {
                         window.gtag('event', 'accordion_click', {

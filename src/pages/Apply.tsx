@@ -32,12 +32,13 @@ const EmailSignupForm = ({
   setFormStarted: (started: boolean) => void;
   trackFormStart: (formName: string) => void;
 }) => (
-  <form onSubmit={handleEmailSubmit} className="space-y-4">
+  <form onSubmit={handleEmailSubmit} className="space-y-4" data-email-signup>
     <div>
       <Label htmlFor="email">Email Address</Label>
       <Input
         id="email"
         type="email"
+        name="emailAddress"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="your.email@example.com"
@@ -55,6 +56,7 @@ const EmailSignupForm = ({
         <div className="flex items-center space-x-3">
           <Checkbox
             id="1-bedroom"
+            value="1 bedroom (1 or 2 adults)"
             checked={bedroomPreferences.includes("1-bedroom")}
             onCheckedChange={(checked) => handleBedroomChange("1-bedroom", checked as boolean)}
           />
@@ -66,6 +68,7 @@ const EmailSignupForm = ({
         <div className="flex items-center space-x-3">
           <Checkbox
             id="2-bedroom"
+            value="2 bedroom (1 or 2 adults PLUS 1 or more children under 18)"
             checked={bedroomPreferences.includes("2-bedroom")}
             onCheckedChange={(checked) => handleBedroomChange("2-bedroom", checked as boolean)}
           />
@@ -77,6 +80,7 @@ const EmailSignupForm = ({
         <div className="flex items-center space-x-3">
           <Checkbox
             id="3-bedroom"
+            value="3 bedroom (1 or 2 adults PLUS 2 or more children under 18)"
             checked={bedroomPreferences.includes("3-bedroom")}
             onCheckedChange={(checked) => handleBedroomChange("3-bedroom", checked as boolean)}
           />
@@ -305,6 +309,7 @@ const Apply = () => {
                   <Button 
                     onClick={handleGoogleFormClick}
                     className="bg-green-600 hover:bg-green-700 text-lg px-8 py-3"
+                    data-open-application
                   >
                     <ExternalLink className="h-5 w-5 mr-2" />
                     Complete Application Form

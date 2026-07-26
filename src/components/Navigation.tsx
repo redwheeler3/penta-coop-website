@@ -53,18 +53,18 @@ const Navigation = memo(() => {
           </div>
 
           {/* Mobile Menu Button */}
-          <Button 
+          <Button
             variant="ghost" 
             className="md:hidden"
             onClick={handleMenuToggle}
+            data-menu-toggle
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
 
         {/* Mobile Navigation Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t bg-white">
+        <div className={`md:hidden border-t bg-white ${isMenuOpen ? '' : 'hidden'}`} data-mobile-menu>
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link to="/" onClick={() => handleNavClick('home', 'mobile')}>
                 <Button variant="ghost" className="w-full justify-start">Home</Button>
@@ -82,8 +82,7 @@ const Navigation = memo(() => {
                 </Button>
               </Link>
             </div>
-          </div>
-        )}
+        </div>
       </div>
     </nav>
   );
