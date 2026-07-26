@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Penta Housing Co-Op</title>
+    <meta
+      name="description"
+      content="Privacy Policy for Penta Housing Co-Op, including how we handle information received from Google sign-in and Google APIs."
+    />
+    <link rel="icon" href="/house-favicon.png" type="image/png" />
+    <!--
+      This is a STANDALONE static page (no client-side router, no JavaScript). The main site
+      is a single-page app that serves the same policy at /#/privacy, but hash-routed content
+      is invisible to crawlers that don't run JS — including Google's OAuth verification review.
+      This file is served directly at https://www.pentacoop.com/privacy.html so the policy is
+      readable by any crawler. Keep it in sync with src/pages/Privacy.tsx when the policy changes.
+    -->
+    <style>
+      :root {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: #4b5563; /* gray-600 */
+        line-height: 1.65;
+        background: linear-gradient(to bottom right, #f0fdf4, #d1fae5); /* green-50 -> emerald-100 */
+        min-height: 100vh;
+      }
+      a {
+        color: #15803d; /* green-700 */
+        text-decoration: underline;
+      }
+      a:hover {
+        color: #166534; /* green-800 */
+      }
+      /* Top navigation — mirrors the site header */
+      nav {
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .nav-inner {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #111827; /* gray-900 */
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+      .brand:hover {
+        color: #111827;
+      }
+      .brand svg {
+        color: #16a34a; /* green-600 */
+        margin-right: 0.75rem;
+        flex-shrink: 0;
+      }
+      /* Page body */
+      .container {
+        max-width: 48rem;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+      }
+      .page-head {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .page-head .icon {
+        color: #16a34a; /* green-600 */
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        color: #111827;
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin: 0 0 0.75rem;
+      }
+      .updated {
+        font-size: 0.875rem;
+        color: #6b7280; /* gray-500 */
+        margin: 0;
+      }
+      .card {
+        background: #fff;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+      }
+      section {
+        margin-bottom: 2rem;
+      }
+      section:last-child {
+        margin-bottom: 0;
+      }
+      h2 {
+        color: #111827;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0 0 0.75rem;
+      }
+      h3 {
+        color: #1f2937; /* gray-800 */
+        font-size: 1.075rem;
+        font-weight: 500;
+        margin: 1rem 0 0.5rem;
+      }
+      p {
+        margin: 0 0 0.75rem;
+      }
+      ul {
+        padding-left: 1.5rem;
+        margin: 0 0 0.75rem;
+      }
+      li {
+        margin-bottom: 0.25rem;
+      }
+      .strong {
+        font-weight: 500;
+        color: #1f2937;
+      }
+      .cross-link {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <!-- Penta brand house mark (matches src/components/HouseIcon.tsx) -->
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 3.2 1.8 14.8a1 1 0 0 0 .65 1.77H5V27a1.5 1.5 0 0 0 1.5 1.5h19A1.5 1.5 0 0 0 27 27V16.57h2.55a1 1 0 0 0 .65-1.77L16 3.2ZM13 28.5v-7a3 3 0 0 1 6 0v7H13ZM19.4 13.2a.8.8 0 0 0-.8.8v2.6a.8.8 0 0 0 .8.8h3.4a.8.8 0 0 0 .8-.8V14a.8.8 0 0 0-.8-.8h-3.4Z" />
+          </svg>
+          Penta Housing Co-Op
+        </a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="page-head">
+        <div class="icon">
+          <!-- shield icon (lucide) -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+          </svg>
+        </div>
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: July 25, 2026</p>
+      </div>
+
+      <div class="card">
+        <section>
+          <p>
+            Penta Housing Co-Operative Association ("Penta," "we," "us," or "our") is committed to
+            protecting the privacy of visitors to our website and of people who apply for membership
+            in our cooperative. This Privacy Policy explains what personal information we collect, how
+            and why we use it, when we disclose it, and the choices and rights you have.
+          </p>
+          <p>
+            We handle personal information in accordance with British Columbia's
+            <em>Personal Information Protection Act</em> (PIPA), and, where it applies to information
+            that crosses provincial or national borders, Canada's
+            <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA).
+          </p>
+        </section>
+
+        <section>
+          <h2>1. Accountability &amp; Privacy Officer</h2>
+          <p>
+            Penta is responsible for the personal information under its control. We have designated a
+            Privacy Officer who is accountable for our compliance with this policy and with applicable
+            privacy law. You can reach our Privacy Officer at
+            <a href="mailto:privacy@pentacoop.com">privacy@pentacoop.com</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. What Is Personal Information?</h2>
+          <p>
+            "Personal information" means information about an identifiable individual. It includes
+            things like your name, email address, telephone number, household details, income
+            information, and housing history. It does not include business contact information used
+            solely to contact you in your role at an organization.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Information We Collect</h2>
+          <p>We collect personal information in two different contexts:</p>
+
+          <h3>Website visitors</h3>
+          <ul>
+            <li>
+              <span class="strong">Analytics data.</span> When you visit our website, a third-party
+              web analytics service collects standard technical information such as your approximate
+              location, device and browser type, the pages you view, and how you arrived at the site.
+              This is used in aggregate to understand and improve the site.
+            </li>
+            <li>
+              <span class="strong">Mailing-list sign-ups.</span> If you join our mailing list, we
+              collect the email address and unit preferences you submit through an embedded
+              third-party form service so that we can notify you when units become available.
+            </li>
+          </ul>
+
+          <h3>Membership applicants</h3>
+          <ul>
+            <li>
+              The information you provide on our membership application, which may include your name,
+              contact details, household composition, income information, and housing history.
+            </li>
+            <li>
+              Your consent to a housing reference check and a credit check, where you provide it as
+              part of your application.
+            </li>
+            <li>
+              Where our application process uses a third-party sign-in (authentication) provider or
+              imports responses from a third-party form service, we receive only the information
+              needed to verify identity and to process and review your submission (see Section 8).
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. How and Why We Use Your Information</h2>
+          <p>
+            We only use personal information for purposes a reasonable person would consider
+            appropriate in the circumstances, including to:
+          </p>
+          <ul>
+            <li>contact you about your application or about available units;</li>
+            <li>determine your eligibility for housing and membership at Penta;</li>
+            <li>determine eligibility for the Home Owner Grant;</li>
+            <li>conduct a housing reference check;</li>
+            <li>conduct a credit check;</li>
+            <li>decide on any request for an internal move;</li>
+            <li>operate, maintain, and improve our website and mailing list.</li>
+          </ul>
+          <p>
+            Membership applications are reviewed by our membership committee and other authorized
+            people (see Section 6). Some of this review is supported by an internal screening tool
+            that helps the committee organize and assess applications; final membership decisions are
+            always made by people, not automatically.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Consent</h2>
+          <p>
+            We collect, use, and disclose your personal information with your consent, except where we
+            are authorized or required by law to do so without it. Depending on the sensitivity of the
+            information, consent may be express (for example, when you agree to a credit check) or
+            implied (for example, when you voluntarily provide information for a clearly identified
+            purpose). We identify the purpose at or before the time we collect the information.
+          </p>
+          <p>
+            You may withdraw your consent at any time, subject to legal or contractual restrictions
+            and reasonable notice. If you withdraw consent, we will explain the likely consequences,
+            which may include our being unable to process your application or keep you on our mailing
+            list. To unsubscribe from the mailing list, follow the instructions in our emails or
+            contact our Privacy Officer.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Disclosure of Personal Information</h2>
+          <p>
+            We limit access to your personal information to those who need it for the purposes
+            described above. The personal information you provide to Penta may be made available to:
+          </p>
+          <ul>
+            <li>the Co-op auditor;</li>
+            <li>the Co-op lawyer;</li>
+            <li>the Co-op treasurer;</li>
+            <li>the Co-op directors;</li>
+            <li>designated committee members, as approved by the Board;</li>
+            <li>agents and staff of the Co-op's management company;</li>
+            <li>municipal employees, for Home Owner Grant applications;</li>
+            <li>the general membership, only if it is relevant to an appeal you make on a Board decision.</li>
+          </ul>
+          <p>
+            We do not sell or rent your personal information. Where we use a service provider to
+            process information on our behalf, we require it to protect the information and to use it
+            only for the purposes we specify. We may also disclose personal information where required
+            or permitted by law, such as in response to a court order, subpoena, or warrant.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Retention and Destruction</h2>
+          <p>
+            We keep personal information only as long as necessary to fulfill the purposes for which it
+            was collected, or as required by law. Where we use personal information to make a decision
+            that directly affects you, we retain it for at least one year so that you have an
+            opportunity to request access to it. We destroy your personal information according to the
+            following schedule:
+          </p>
+          <ul>
+            <li><span class="strong">Non-members:</span> within 1 year of the application closing date;</li>
+            <li><span class="strong">Members:</span> within 7 years of the application closing date.</li>
+          </ul>
+          <p>When personal information is no longer required, we securely destroy, erase, or anonymize it.</p>
+        </section>
+
+        <section>
+          <h2>8. Third-Party Services, Google Sign-In, and Google APIs</h2>
+          <p>
+            Some of our website and application features rely on third-party services, including a web
+            analytics service, an embedded form service, and Google sign-in together with Google APIs
+            that let authorized committee members review the applications you submit.
+          </p>
+          <p>
+            When you sign in with Google, we receive only basic profile information (your name and
+            email address) needed to verify your identity and give authorized committee members access
+            to our internal application-review tool. Signing in does not grant the tool access to your
+            Google Drive, Gmail, or other Google data. Separately, an authorized administrator connects
+            the single Google Sheet that holds membership-application responses, using Google's file
+            picker; this grants read-only access to that one file only, so the committee can review
+            submitted applications. We do not access any other files in anyone's Google Drive.
+          </p>
+          <p>
+            We use information obtained through Google sign-in and Google APIs only to provide and
+            improve the features described in this policy. In particular:
+          </p>
+          <ul>
+            <li>
+              we do not sell, rent, or transfer this information to advertising networks, data brokers,
+              or information resellers;
+            </li>
+            <li>
+              we do not use it to serve advertising, including personalized, interest-based, or
+              retargeted advertising;
+            </li>
+            <li>
+              we do not allow staff or volunteers to read this information except where you have asked
+              us to, where it is necessary to operate a feature you requested (such as reviewing your
+              application), where it is needed to maintain security or investigate abuse, or where
+              required by law;
+            </li>
+            <li>
+              we may transfer it only to provide a feature you requested, to protect security and
+              investigate abuse, to comply with applicable law, or in connection with a merger,
+              acquisition, or similar transaction subject to the protections in this policy.
+            </li>
+          </ul>
+          <p>
+            Penta's use and transfer of information received from Google APIs to any other app will
+            adhere to the
+            <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>,
+            including the Limited Use requirements. Google handles your information under its own
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>,
+            which we encourage you to review.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. How We Protect Your Information</h2>
+          <p>
+            We protect personal information with safeguards appropriate to its sensitivity. These
+            include administrative measures (such as limiting access to authorized people and requiring
+            confidentiality), physical measures (such as securing paper records), and technological
+            measures (such as passwords, access controls, and encryption in transit where appropriate).
+            No method of transmission or storage is completely secure, but we take reasonable steps to
+            guard against loss, theft, and unauthorized access, use, or disclosure.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Accuracy, Access, and Correction</h2>
+          <p>
+            We make reasonable efforts to keep your personal information accurate and complete. You have
+            the right to ask what personal information we hold about you, how it has been used, and to
+            whom it has been disclosed, and to request corrections.
+          </p>
+          <p>
+            To make a request, contact our Privacy Officer at
+            <a href="mailto:privacy@pentacoop.com">privacy@pentacoop.com</a>. We may need to verify your
+            identity before responding. We will respond within the time required by law (generally 30
+            business days), and we will let you know in advance if any minimal fee applies. If we cannot
+            correct information as you ask, we will note your requested correction in our records.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Questions and Complaints</h2>
+          <p>
+            If you have a question or concern about how we handle your personal information, please
+            contact our Privacy Officer at
+            <a href="mailto:privacy@pentacoop.com">privacy@pentacoop.com</a>. You will receive a
+            response within 10 business days. If you are not satisfied with our response, you may
+            contact the Office of the Information and Privacy Commissioner for British Columbia (OIPC).
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Changes to This Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time. When we do, we will revise the "Last
+            updated" date at the top of this page. Your continued use of our website after changes take
+            effect means you accept the updated policy.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact Us</h2>
+          <p>
+            Penta Housing Co-Operative Association<br />
+            Vancouver, British Columbia, Canada<br />
+            Privacy Officer: <a href="mailto:privacy@pentacoop.com">privacy@pentacoop.com</a>
+          </p>
+        </section>
+      </div>
+
+      <div class="cross-link">
+        <a href="/terms.html">View our Terms of Service</a>
+      </div>
+    </div>
+  </body>
+</html>
