@@ -1,0 +1,10 @@
+---
+layout: layout.njk
+title: Terms of Service - Penta Housing Co-Op
+permalink: /terms.html
+legalDocument: terms
+---
+<div class="legal-page">
+  {% include "navigation.njk" %}
+  {{ legal[legalDocument].body | safe }}
+</div>

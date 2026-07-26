@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description | default(site.description) }}">
+    <meta name="author" content="{{ site.name }}">
+    <link rel="icon" href="/house-favicon.png" type="image/png">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description | default(site.description) }}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ site.url }}/social-preview.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Social preview card for Penta Housing Co-Op featuring the co-op exterior, Penta's house icon, and a summary of community-focused cooperative housing in Vancouver.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@pentacoop">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description | default(site.description) }}">
+    <meta name="twitter:image" content="{{ site.url }}/social-preview.png">
+    <meta name="twitter:image:alt" content="Social preview card for Penta Housing Co-Op featuring the co-op exterior, Penta's house icon, and a summary of community-focused cooperative housing in Vancouver.">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Penta Housing Co-Op","url":"https://www.pentacoop.com","logo":"https://www.pentacoop.com/house-favicon.png","foundingDate":"1978","description":"Affordable cooperative housing in Vancouver's Point Grey neighbourhood, focused on community, sustainability, and shared living.","address":{"@type":"PostalAddress","addressLocality":"Vancouver","addressRegion":"BC","addressCountry":"CA"},"sameAs":["https://www.chf.bc.ca","https://chfcanada.coop"]}</script>
+    <link rel="stylesheet" href="/assets/site.css">
+    {% if legalDocument %}
+    <style>{{ legal[legalDocument].styles | safe }}</style>
+    <style>
+      .legal-page nav a { color: #374151; text-decoration: none; }
+      .legal-page nav a:hover { color: #111827; }
+    </style>
+    {% endif %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analyticsId }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.analyticsId }}');
+    </script>
+  </head>
+  <body>
+    {{ content | safe }}
+    <script type="module" src="/assets/site.js"></script>
+  </body>
+</html>

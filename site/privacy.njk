@@ -1,0 +1,10 @@
+---
+layout: layout.njk
+title: Privacy Policy - Penta Housing Co-Op
+permalink: /privacy.html
+legalDocument: privacy
+---
+<div class="legal-page">
+  {% include "navigation.njk" %}
+  {{ legal[legalDocument].body | safe }}
+</div>

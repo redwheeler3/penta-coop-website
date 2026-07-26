@@ -11,22 +11,16 @@ The public site is a static multi-page website. A production build produces real
 - `/apply.html`
 - `/members.html`
 
-Visitors do not download or run React. React is used only during the build to render the existing page templates into HTML. The small browser script in `src/site.ts` handles the interactive behavior and Google Analytics events.
-
-Vite builds the CSS and browser script. `scripts/prerender.mjs` writes the rendered pages into `dist/`, which is the deployable directory.
+Eleventy renders the pages into HTML. The small browser script in `site/assets/site.js` handles the interactive behavior and Google Analytics events.
 
 ## Project layout
 
 ```
-src/
-  pages/              Page templates rendered at build time
-  components/         Shared page-template components
-  config/constants.ts Application-opening and Google Forms configuration
-  site.ts             Browser behavior: analytics, menu, form, accordion, toasts
-  prerender.tsx       Static-page rendering entry point
-  index.css           Tailwind CSS entry point and theme
-scripts/
-  prerender.mjs       Writes static pages to dist/
+site/
+  _includes/          Shared Eleventy layout, navigation, and form partials
+  *.njk               Page templates
+  assets/site.js      Browser behavior: analytics, menu, form, accordion, toasts
+src/index.css         Tailwind CSS entry point and theme
 public/               Static assets copied directly to dist/
   privacy.html        Crawlable privacy policy
   terms.html          Crawlable terms of service
@@ -54,16 +48,16 @@ npm run deploy # Build and publish dist/ to GitHub Pages
 
 ## Updating content
 
-- Public page content lives in `src/pages/`.
-- Shared navigation lives in `src/components/Navigation.tsx`.
-- Current unit and application status live in `src/config/constants.ts`.
-- Images belong in `public/`; reference them from pages with `import.meta.env.BASE_URL`.
+- Public page content lives in `site/`.
+- Shared navigation lives in `site/_includes/navigation.njk`.
+- Current unit, application, analytics, and Google Forms configuration live in `site/_data/site.js`.
+- Images belong in `public/`; reference them with root-relative URLs (for example, `/penta-images/hero-exterior.jpg`).
 
 After any change, run `npm run build` and inspect the relevant file in `dist/`.
 
 ## Interactive behavior
 
-`src/site.ts` is the only browser-side behavior layer. It provides:
+`site/assets/site.js` is the only browser-side behavior layer. It provides:
 
 - responsive navigation menu;
 - application-form link handling;
@@ -72,17 +66,17 @@ After any change, run `npm run build` and inspect the relevant file in `dist/`.
 - TELUS-email help accordion;
 - GA4 page views and interaction events.
 
-Keep new interactive behavior here instead of adding client-side React rendering or routing.
+Keep new interactive behavior here instead of adding client-side rendering or routing.
 
 ## Google Forms signup
 
-The mailing-list form on `apply.html` sends a `POST` request to the Google Forms endpoint configured in `FORM_CONFIG.MAILING_LIST_SIGNUP`.
+The mailing-list form on `apply.html` sends a `POST` request to the Google Forms endpoint in `site/assets/site.js`.
 
-The Google field names and the preference strings in `src/site.ts` must continue to match the Google Form. Test an actual signup after changing either the form configuration or the preference labels.
+The Google field names and preference strings in `site/assets/site.js` must continue to match the Google Form. Test an actual signup after changing either the endpoint or the preference labels.
 
 ## Analytics
 
-GA4 is initialized in `index.html` with automatic page views disabled. `src/site.ts` sends one `page_view` per real HTML page and tracks:
+GA4 is initialized once in the shared Eleventy layout. Because this is a normal multi-page site, GA4 sends its standard page view once for each full document load. `site/assets/site.js` tracks:
 
 - `navigation_click`
 - `cta_click`
@@ -90,6 +84,10 @@ GA4 is initialized in `index.html` with automatic page views disabled. `src/site
 - `resource_link_click`
 - `accordion_click`
 - `form_start`, `form_submit`, `form_error`, and `form_abandonment`
+
+Do not add a manual `page_view` call or SPA history tracking: normal document navigation already produces the correct page views.
+
+To report on custom event parameters beyond DebugView, register the relevant event-scoped custom dimensions in GA4 (for example `button_name`, `button_location`, `destination`, `link_name`, `resource_category`, `form_name`, and `error_type`). Do not send email addresses or other personal information in analytics events.
 
 Verify analytics changes in GA4 DebugView before deploying. Do not reintroduce SPA route tracking; static pages intentionally use normal document navigation.
 
