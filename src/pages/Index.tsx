@@ -158,13 +158,13 @@ const Index = () => {
       <footer className="py-4 px-4 bg-gray-100">
         <div className="max-w-7xl mx-auto text-center space-y-2">
           <p className="text-xs text-gray-500">
-            <Link to="/privacy" className="hover:text-gray-700 transition-colors">
+            <a href="/privacy.html" className="hover:text-gray-700 transition-colors">
               Privacy Policy
-            </Link>
+            </a>
             <span className="mx-2" aria-hidden="true">·</span>
-            <Link to="/terms" className="hover:text-gray-700 transition-colors">
+            <a href="/terms.html" className="hover:text-gray-700 transition-colors">
               Terms of Service
-            </Link>
+            </a>
           </p>
           <p className="text-xs text-gray-500">
             Website designed by{" "}
