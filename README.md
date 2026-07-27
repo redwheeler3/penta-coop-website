@@ -70,9 +70,9 @@ Keep new interactive behavior here instead of adding client-side rendering or ro
 
 ## Google Forms signup
 
-The mailing-list form on `apply.html` sends a `POST` request to the Google Forms endpoint in `site/assets/site.js`.
+The mailing-list form on `apply.html` sends a `POST` request to the Google Forms endpoint configured in `site/_data/site.js`. The endpoint, field names, and preference labels are rendered into `data-*` attributes on the form, which `site/assets/site.js` reads at submit time.
 
-The Google field names and preference strings in `site/assets/site.js` must continue to match the Google Form. Test an actual signup after changing either the endpoint or the preference labels.
+The Google field names in `site/_data/site.js` and the preference strings in `site/_includes/email-signup.njk` must continue to match the Google Form. Test an actual signup after changing either the endpoint or the preference labels.
 
 ## Analytics
 
