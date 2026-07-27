@@ -4,7 +4,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "public/house-favicon.png": "house-favicon.png" });
   eleventyConfig.addPassthroughCopy({ "public/placeholder.svg": "placeholder.svg" });
   eleventyConfig.addPassthroughCopy({ "public/robots.txt": "robots.txt" });
-  eleventyConfig.addPassthroughCopy({ "public/screener.html": "screener.html" });
   eleventyConfig.addPassthroughCopy({ "public/social-preview.png": "social-preview.png" });
   eleventyConfig.addPassthroughCopy({ "public/penta-images": "penta-images" });
   eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });

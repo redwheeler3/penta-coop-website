@@ -10,6 +10,9 @@ The public site is a static multi-page website. A production build produces real
 - `/about.html`
 - `/apply.html`
 - `/members.html`
+- `/privacy.html`
+- `/terms.html`
+- `/screener.html`
 
 Eleventy renders the pages into HTML. The small browser script in `site/assets/site.js` handles the interactive behavior and Google Analytics events.
 
@@ -18,13 +21,10 @@ Eleventy renders the pages into HTML. The small browser script in `site/assets/s
 ```
 site/
   _includes/          Shared Eleventy layout, navigation, and form partials
-  *.njk               Page templates
+  *.njk               Page templates, including privacy, terms, and screener pages
   assets/site.js      Browser behavior: analytics, menu, form, accordion, toasts
 src/index.css         Tailwind CSS entry point and theme
 public/               Static assets copied directly to dist/
-  privacy.html        Crawlable privacy policy
-  terms.html          Crawlable terms of service
-  screener.html       OAuth consent-screen landing page
 ```
 
 ## Local development
@@ -36,7 +36,7 @@ npm install
 npm run dev
 ```
 
-`npm run dev` builds the static site and starts a preview server on port 8080. Re-run it after changing page templates, styles, or `src/site.ts`.
+`npm run dev` builds the static site and starts a preview server on port 8080. Re-run it after changing page templates, styles, or `site/assets/site.js`.
 
 Useful commands:
 

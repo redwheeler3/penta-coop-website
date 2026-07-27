@@ -1,11 +1,9 @@
 ---
-layout: layout.njk
+layout: page-shell.njk
 title: Members Area - Penta Housing Co-Op
 permalink: /members.html
 ---
-<main class="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
-  {% include "navigation.njk" %}
-  <div class="max-w-4xl mx-auto px-4 py-12">
+<div class="max-w-4xl mx-auto px-4 py-12">
     <header class="text-center mb-12"><h1 class="text-4xl font-bold text-gray-900 mb-4">Members Area</h1><p class="text-lg text-gray-600">Access member resources, documents, and community discussions</p></header>
     <div class="grid md:grid-cols-2 md:items-start gap-6">
       {% for resource in [{title:'File Repository',description:'Access documents on Google Drive',icon:'file',links:[{t:'Meeting Minutes',u:'https://drive.google.com/drive/folders/1kyVTEUvDEYy4XcnayWsV2KisZ44CRXgE?usp=drive_link'},{t:'Management Reports',u:'https://drive.google.com/drive/folders/16Bjujq-0VlEEJCqToI52RMbnJ5cuglc7?usp=drive_link'},{t:'Bylaws & Policies',u:'https://drive.google.com/drive/folders/1O2zb24edHeVHKLkTu5lSM0MthMccnLPF?usp=drive_link'},{t:'Maintenance Guidelines',u:'https://drive.google.com/file/d/1rrVl4VSP6l_aYXTpOXV2BHY3TA55Qrhk/view?usp=drive_link'},{t:'Complaint Form',u:'https://docs.google.com/file/d/1D1cubBrqwal2Ok4t7aCH3Yiw-n25R8Mh/view?usp=drive_link'},{t:'Committee Composition',u:'https://drive.google.com/file/d/1Nv9Pnb6EaHvZAJfMew0LFQs8YBbwu_b9/view?usp=drive_link'},{t:'Browse All Files',u:'https://files.pentacoop.com'}]},{title:'Community Forum',description:'Join discussions with other members on Discord',icon:'message',links:[{t:'Sign Up',u:'https://discord.gg/yJRGzyCT5B'},{t:'Join Discussion',u:'https://discord.com/channels/1415940719276855380/1415940719813595220'}]}] %}
