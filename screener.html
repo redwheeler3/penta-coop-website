@@ -1,214 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Penta Application Screener - Penta Housing Co-Op</title>
-    <meta
-      name="description"
-      content="The Penta Application Screener is an internal tool that helps the Penta Housing Co-op membership committee review membership applications."
-    />
-    <link rel="icon" href="/house-favicon.png" type="image/png" />
-    <!--
-      Standalone static page (no router, no JavaScript) served directly at
-      https://www.pentacoop.com/screener.html. This is the public "home page" for the Penta
-      Application Screener app, referenced by its Google OAuth consent screen: it states the app
-      name and explains the app's purpose so Google's verification review can read both without
-      running JavaScript or getting past the app's login wall.
-    -->
-    <style>
-      :root {
-        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        color: #4b5563; /* gray-600 */
-        line-height: 1.65;
-        background: linear-gradient(to bottom right, #f0fdf4, #d1fae5); /* green-50 -> emerald-100 */
-        min-height: 100vh;
-      }
-      a {
-        color: #15803d; /* green-700 */
-        text-decoration: underline;
-      }
-      a:hover {
-        color: #166534; /* green-800 */
-      }
-      nav {
-        background: #fff;
-        border-bottom: 1px solid #e5e7eb;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-      }
-      .nav-inner {
-        max-width: 80rem;
-        margin: 0 auto;
-        padding: 0 1rem;
-        height: 4rem;
-        display: flex;
-        align-items: center;
-      }
-      .brand {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: #111827; /* gray-900 */
-        font-weight: 700;
-        font-size: 1.25rem;
-      }
-      .brand:hover {
-        color: #111827;
-      }
-      .brand svg {
-        color: #16a34a; /* green-600 */
-        margin-right: 0.75rem;
-        flex-shrink: 0;
-      }
-      .container {
-        max-width: 48rem;
-        margin: 0 auto;
-        padding: 3rem 1rem;
-      }
-      .page-head {
-        text-align: center;
-        margin-bottom: 2.5rem;
-      }
-      .page-head .icon {
-        color: #16a34a; /* green-600 */
-        display: flex;
-        justify-content: center;
-        margin-bottom: 1rem;
-      }
-      h1 {
-        color: #111827;
-        font-size: 2.25rem;
-        font-weight: 700;
-        margin: 0 0 0.75rem;
-      }
-      .subtitle {
-        font-size: 1.05rem;
-        color: #6b7280; /* gray-500 */
-        margin: 0;
-      }
-      .card {
-        background: #fff;
-        border-radius: 0.75rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-        padding: 2rem;
-      }
-      section {
-        margin-bottom: 2rem;
-      }
-      section:last-child {
-        margin-bottom: 0;
-      }
-      h2 {
-        color: #111827;
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin: 0 0 0.75rem;
-      }
-      p {
-        margin: 0 0 0.75rem;
-      }
-      ul {
-        padding-left: 1.5rem;
-        margin: 0 0 0.75rem;
-      }
-      li {
-        margin-bottom: 0.375rem;
-      }
-      .links {
-        text-align: center;
-        margin-top: 2rem;
-        font-size: 0.875rem;
-      }
-    </style>
+    <meta name="description" content="The Penta Application Screener is an internal tool that helps the Penta Housing Co-op membership committee review membership applications.">
+    <meta name="author" content="Penta Housing Co-Op">
+    <link rel="icon" href="/house-favicon.png" type="image/png">
+    <meta property="og:title" content="Penta Application Screener - Penta Housing Co-Op">
+    <meta property="og:description" content="The Penta Application Screener is an internal tool that helps the Penta Housing Co-op membership committee review membership applications.">
+    <meta property="og:site_name" content="Penta Housing Co-Op">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pentacoop.com/screener.html">
+    <meta property="og:image" content="https://www.pentacoop.com/social-preview.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Social preview card for Penta Housing Co-Op featuring the co-op exterior, Penta's house icon, and a summary of community-focused cooperative housing in Vancouver.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@pentacoop">
+    <meta name="twitter:title" content="Penta Application Screener - Penta Housing Co-Op">
+    <meta name="twitter:description" content="The Penta Application Screener is an internal tool that helps the Penta Housing Co-op membership committee review membership applications.">
+    <meta name="twitter:image" content="https://www.pentacoop.com/social-preview.png">
+    <meta name="twitter:image:alt" content="Social preview card for Penta Housing Co-Op featuring the co-op exterior, Penta's house icon, and a summary of community-focused cooperative housing in Vancouver.">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Penta Housing Co-Op","url":"https://www.pentacoop.com","logo":"https://www.pentacoop.com/house-favicon.png","foundingDate":"1978","description":"Affordable cooperative housing in Vancouver's Point Grey neighbourhood, focused on community, sustainability, and shared living.","address":{"@type":"PostalAddress","addressLocality":"Vancouver","addressRegion":"BC","addressCountry":"CA"},"sameAs":["https://www.chf.bc.ca","https://chfcanada.coop"]}</script>
+    <link rel="stylesheet" href="/assets/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFQ768381Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VFQ768381Z');
+    </script>
   </head>
   <body>
-    <nav>
-      <div class="nav-inner">
-        <a class="brand" href="/">
-          <!-- Penta brand house mark (matches src/components/HouseIcon.tsx) -->
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 3.2 1.8 14.8a1 1 0 0 0 .65 1.77H5V27a1.5 1.5 0 0 0 1.5 1.5h19A1.5 1.5 0 0 0 27 27V16.57h2.55a1 1 0 0 0 .65-1.77L16 3.2ZM13 28.5v-7a3 3 0 0 1 6 0v7H13ZM19.4 13.2a.8.8 0 0 0-.8.8v2.6a.8.8 0 0 0 .8.8h3.4a.8.8 0 0 0 .8-.8V14a.8.8 0 0 0-.8-.8h-3.4Z" />
-          </svg>
-          Penta Housing Co-Op
-        </a>
+    <main class="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
+  
+
+
+
+<nav class="bg-white shadow-sm border-b">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="/" class="flex items-center min-w-0 rounded-md px-2 py-1 transition-colors hover:bg-gray-100">
+        <svg viewBox="0 0 32 32" fill="currentColor" class="h-8 w-8 text-green-600 mr-2 sm:mr-3 flex-shrink-0" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 3.2 1.8 14.8a1 1 0 0 0 .65 1.77H5V27a1.5 1.5 0 0 0 1.5 1.5h19A1.5 1.5 0 0 0 27 27V16.57h2.55a1 1 0 0 0 .65-1.77L16 3.2ZM13 28.5v-7a3 3 0 0 1 6 0v7H13ZM19.4 13.2a.8.8 0 0 0-.8.8v2.6a.8.8 0 0 0 .8.8h3.4a.8.8 0 0 0 .8-.8V14a.8.8 0 0 0-.8-.8h-3.4Z"/></svg>
+        <span class="text-lg sm:text-xl font-bold text-gray-900 truncate"><span class="hidden sm:inline">Penta Housing Co-Op</span><span class="sm:hidden">Penta Co-Op</span></span>
+      </a>
+      <div class="hidden md:flex space-x-4 text-sm font-medium">
+        <a href="/" class="px-4 py-2 rounded-md transition-colors hover:bg-gray-100">Home</a>
+        <a href="/about.html" class="px-4 py-2 rounded-md transition-colors hover:bg-gray-100">About</a>
+        <a href="/apply.html" class="px-4 py-2 rounded-md transition-colors hover:bg-gray-100">Apply</a>
+        <a href="/members.html" class="inline-flex items-center px-4 py-2 rounded-md border border-green-600 text-green-700 transition-colors hover:bg-green-50"><svg class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Members Area</a>
       </div>
-    </nav>
-
-    <div class="container">
-      <div class="page-head">
-        <div class="icon">
-          <!-- clipboard-check icon (lucide) -->
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-            <path d="m9 14 2 2 4-4" />
-          </svg>
-        </div>
-        <h1>Penta Application Screener</h1>
-        <p class="subtitle">An internal review tool for the Penta Housing Co-op membership committee</p>
-      </div>
-
-      <div class="card">
-        <section>
-          <h2>What it is</h2>
-          <p>
-            The <strong>Penta Application Screener</strong> is a private, internal web application
-            used by the membership committee of Penta Housing Co-Operative Association to review
-            applications for membership in the co-op. It is not a public service; access is limited to
-            authorized committee members, who sign in at
-            <a href="https://screener.pentacoop.com" target="_blank" rel="noopener noreferrer">screener.pentacoop.com</a>.
-          </p>
-        </section>
-
-        <section>
-          <h2>What it does</h2>
-          <p>
-            When people apply to join the co-op, their responses are collected in a Google Sheet. The
-            screener helps the committee work through those applications by:
-          </p>
-          <ul>
-            <li>reading the submitted applications from the co-op's Google Sheet;</li>
-            <li>applying the co-op's eligibility rules (such as household size and income ranges);</li>
-            <li>
-              helping committee members organize, compare, and prioritize applications into a
-              shortlist for the committee to consider.
-            </li>
-          </ul>
-          <p>
-            The tool supports the committee's work; it does not make membership decisions. Final
-            decisions are always made by people, following the co-op's bylaws and process.
-          </p>
-        </section>
-
-        <section>
-          <h2>How it uses Google sign-in</h2>
-          <p>
-            Committee members sign in with their Google account for identity only. Signing in does not
-            give the app access to a member's Google Drive, Gmail, or other Google data. Separately, an
-            authorized administrator connects the single Google Sheet of application responses using
-            Google's file picker, which grants read-only access to that one file so the committee can
-            review submissions.
-          </p>
-          <p>
-            For full detail on what information the app collects and how it is used, see our
-            <a href="/privacy.html">Privacy Policy</a>.
-          </p>
-        </section>
-      </div>
-
-      <div class="links">
-        <a href="https://screener.pentacoop.com" target="_blank" rel="noopener noreferrer">Committee sign-in</a> &nbsp;·&nbsp;
-        <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
-        <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp;
-        <a href="/">Penta Housing Co-Op home</a>
-      </div>
+      <button type="button" class="md:hidden p-2 rounded-md hover:bg-gray-100" data-menu-toggle aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-navigation"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     </div>
+    <div id="mobile-navigation" class="md:hidden border-t bg-white hidden" data-mobile-menu><div class="px-2 pt-2 pb-3 space-y-1"><a href="/" class="block px-4 py-2 rounded-md hover:bg-gray-100">Home</a><a href="/about.html" class="block px-4 py-2 rounded-md hover:bg-gray-100">About</a><a href="/apply.html" class="block px-4 py-2 rounded-md hover:bg-gray-100">Apply</a><a href="/members.html" class="block px-4 py-2 rounded-md border border-green-600 text-green-700 ">Members Area</a></div></div>
+  </div>
+</nav>
+
+  <div class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <header class="text-center mb-10">
+      <div class="flex justify-center mb-4 text-green-600">
+        <svg class="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+      </div>
+      <h1 class="text-4xl font-bold text-gray-900 mb-3">Penta Application Screener</h1>
+      <p class="text-lg text-gray-500">An internal review tool for the Penta Housing Co-op membership committee</p>
+    </header>
+
+    <div class="rounded-xl bg-white p-8 shadow-lg space-y-8 text-gray-600 leading-relaxed">
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900 mb-3">What it is</h2>
+        <p>The <strong>Penta Application Screener</strong> is a private, internal web application used by the membership committee of Penta Housing Co-Operative Association to review applications for membership in the co-op. It is not a public service; access is limited to authorized committee members, who sign in at <a class="text-green-700 underline hover:text-green-800" href="https://screener.pentacoop.com" target="_blank" rel="noopener noreferrer">screener.pentacoop.com</a>.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900 mb-3">What it does</h2>
+        <p class="mb-3">When people apply to join the co-op, their responses are collected in a Google Sheet. The screener helps the committee work through those applications by:</p>
+        <ul class="list-disc space-y-2 pl-6 mb-3">
+          <li>reading the submitted applications from the co-op's Google Sheet;</li>
+          <li>applying the co-op's eligibility rules (such as household size and income ranges);</li>
+          <li>helping committee members organize, compare, and prioritize applications into a shortlist for the committee to consider.</li>
+        </ul>
+        <p>The tool supports the committee's work; it does not make membership decisions. Final decisions are always made by people, following the co-op's bylaws and process.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900 mb-3">How it uses Google sign-in</h2>
+        <p class="mb-3">Committee members sign in with their Google account for identity only. Signing in does not give the app access to a member's Google Drive, Gmail, or other Google data. Separately, an authorized administrator connects the single Google Sheet of application responses using Google's file picker, which grants read-only access to that one file so the committee can review submissions.</p>
+        <p>For full detail on what information the app collects and how it is used, see our <a class="text-green-700 underline hover:text-green-800" href="/privacy.html">Privacy Policy</a>.</p>
+      </section>
+    </div>
+
+    <p class="mt-8 text-center text-sm text-gray-600"><a class="text-green-700 underline hover:text-green-800" href="https://screener.pentacoop.com" target="_blank" rel="noopener noreferrer">Committee sign-in</a><span class="mx-2" aria-hidden="true">·</span><a class="text-green-700 underline hover:text-green-800" href="/privacy.html">Privacy Policy</a><span class="mx-2" aria-hidden="true">·</span><a class="text-green-700 underline hover:text-green-800" href="/terms.html">Terms of Service</a></p>
+  </div>
+
+  <footer class="py-4 px-4 bg-gray-100"><div class="max-w-7xl mx-auto text-center space-y-2"><p class="text-xs text-gray-500"><a href="/privacy.html" class="hover:text-gray-700">Privacy Policy</a><span class="mx-2" aria-hidden="true">·</span><a href="/terms.html" class="hover:text-gray-700">Terms of Service</a></p><p class="text-xs text-gray-500">Website designed by <a href="https://www.jeffo.net" target="_blank" rel="noopener noreferrer" class="hover:text-gray-700">Jeff Oriecuia</a></p></div></footer>
+
+</main>
+
+    <script type="module" src="/assets/site.js"></script>
   </body>
 </html>
