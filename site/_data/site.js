@@ -3,7 +3,7 @@ export default {
   description: "Affordable cooperative housing in Vancouver's Point Grey neighbourhood, focused on community, sustainability, and shared living.",
   url: "https://www.pentacoop.com",
   analyticsId: "G-VFQ768381Z",
-  applicationsOpen: true,
+  applicationsOpen: false,
   unitListing: {
     type: "3 Bedroom",
     monthlyHousingCharge: "$1,226",
