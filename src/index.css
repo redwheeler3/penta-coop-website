@@ -47,11 +47,11 @@
   }
 }
 
-/* The file repository has longer document names than the community forum.
-   Give it the larger desktop column rather than forcing a single action to span both. */
+/* Give the community forum a slightly wider desktop column so its "on Discord"
+   description fits on one line, keeping the file repository comfortably wide. */
 @media (min-width: 768px) {
   main:has(a[data-resource-category="File Repository"]) > .max-w-4xl > .grid {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 17fr) minmax(0, 14fr);
   }
 
   a[data-resource-category="File Repository"].md\:col-span-2 {
