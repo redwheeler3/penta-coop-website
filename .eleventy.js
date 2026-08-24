@@ -1,6 +1,7 @@
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "public/CNAME": "CNAME" });
   eleventyConfig.addPassthroughCopy({ "public/favicon.ico": "favicon.ico" });
+  eleventyConfig.addPassthroughCopy({ "public/email-house.png": "email-house.png" });
   eleventyConfig.addPassthroughCopy({ "public/house-favicon.png": "house-favicon.png" });
   eleventyConfig.addPassthroughCopy({ "public/placeholder.svg": "placeholder.svg" });
   eleventyConfig.addPassthroughCopy({ "public/robots.txt": "robots.txt" });
