@@ -95,14 +95,18 @@ signup?.addEventListener("submit", async (event) => {
   submitIcon?.setAttribute("hidden", "");
   submitSpinner?.removeAttribute("hidden");
   try {
-    const result = await submitVacancyRequest({ email: email.value, unitSizes });
+    const result = await submitVacancyRequest({
+      email: email.value,
+      unitSizes,
+      consentVersion: signup.dataset.consentVersion,
+    });
     if (result === "saved") {
       signup.reset();
       formStarted = false;
       showSignupStatus("You're signed up. We'll email you once when a requested unit size becomes available.", "success");
       track("form_success", { form_name: formName });
     } else if (result === "invalid") {
-      showSignupStatus("We couldn't save those details. Please check your email address and unit preferences, then try again.", "error");
+      showSignupStatus("We couldn't save those details. Please refresh the page, check your email address and unit preferences, then try again.", "error");
       track("form_error", { form_name: formName, error_type: "Invalid Request" });
     } else {
       showSignupStatus("We're sorry, but we still couldn't save your request. Please email Tech Support at techsupport@pentacoop.com with the unit sizes you want, and we'll add you manually.", "error", true);
