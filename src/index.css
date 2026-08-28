@@ -65,6 +65,19 @@ main:has([data-email-signup]) .bg-white > .space-y-6 > :not([hidden]) ~ :not([hi
   margin-top: 1rem;
 }
 
+.signup-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #fff;
+  border-radius: 999px;
+  animation: signup-spin 0.75s linear infinite;
+}
+
+@keyframes signup-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* White type needs a darker green than Tailwind's green-600 to meet WCAG contrast. */
 @layer utilities {
   .bg-green-600.text-white {

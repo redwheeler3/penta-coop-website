@@ -63,10 +63,10 @@ signup?.querySelector("input[type=email]")?.addEventListener("focus", () => {
   formStarted = true;
 });
 
-signup?.addEventListener("submit", (event) => {
+signup?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const email = signup.querySelector("input[type=email]");
-  const preferences = [...signup.querySelectorAll("input[type=checkbox]:checked")];
+  const preferences = [...signup.querySelectorAll('input[name="unitSize"]:checked')];
   if (!email?.validity.valid) {
     email?.setAttribute("aria-invalid", "true");
     email?.focus();
@@ -82,19 +82,110 @@ signup?.addEventListener("submit", (event) => {
   }
   if (isSubmitting) return;
   isSubmitting = true;
-  const form = new FormData();
   const formName = signup.dataset.formName;
-  form.set(signup.dataset.emailField, email.value);
-  preferences.forEach((input) => form.append(signup.dataset.preferenceField, input.value));
-  track("form_submit", { form_name: formName, bedroom_preferences: preferences.map(({ value }) => value).join(","), num_preferences: preferences.length, form_destination: "google_forms" });
+  const unitSizes = preferences.map(({ value }) => Number(value));
+  track("form_submit", { form_name: formName, bedroom_preferences: unitSizes.join(","), num_preferences: preferences.length, form_destination: "penta_applications" });
   const submitButton = signup.querySelector('button[type="submit"]');
+  const submitLabel = signup.querySelector("[data-submit-label]");
+  const submitIcon = signup.querySelector("[data-submit-icon]");
+  const submitSpinner = signup.querySelector("[data-submit-spinner]");
   submitButton?.setAttribute("aria-busy", "true");
   submitButton?.setAttribute("disabled", "");
-  fetch(signup.dataset.submitUrl, { method: "POST", mode: "no-cors", body: form })
-    .then(() => { signup.reset(); showToast("Thank you! You've been added to our mailing list."); })
-    .catch(() => { track("form_error", { form_name: "Email Signup", error_type: "Submission Failed" }); showToast("Failed to submit. Please try again.", "error"); })
-    .finally(() => { isSubmitting = false; submitButton?.removeAttribute("aria-busy"); submitButton?.removeAttribute("disabled"); });
+  if (submitLabel) submitLabel.textContent = "Submitting...";
+  submitIcon?.setAttribute("hidden", "");
+  submitSpinner?.removeAttribute("hidden");
+  try {
+    const result = await submitVacancyRequest({ email: email.value, unitSizes });
+    if (result === "saved") {
+      signup.reset();
+      formStarted = false;
+      showSignupStatus("You're signed up. We'll email you once when a requested unit size becomes available.", "success");
+      track("form_success", { form_name: formName });
+    } else if (result === "invalid") {
+      showSignupStatus("We couldn't save those details. Please check your email address and unit preferences, then try again.", "error");
+      track("form_error", { form_name: formName, error_type: "Invalid Request" });
+    } else {
+      showSignupStatus("We're sorry, but we still couldn't save your request. Please email Tech Support at techsupport@pentacoop.com with the unit sizes you want, and we'll add you manually.", "error", true);
+      track("form_error", { form_name: formName, error_type: "Recovery Exhausted" });
+    }
+  } finally {
+    isSubmitting = false;
+    submitButton?.removeAttribute("aria-busy");
+    submitButton?.removeAttribute("disabled");
+    if (submitLabel) submitLabel.textContent = "Subscribe for Updates";
+    submitIcon?.removeAttribute("hidden");
+    submitSpinner?.setAttribute("hidden", "");
+  }
 });
+
+const RETRY_INTERVAL_MS = 10000;
+const RETRY_DEADLINE_MS = 120000;
+const REQUEST_TIMEOUT_MS = 15000;
+
+async function submitVacancyRequest(payload) {
+  const startedAt = Date.now();
+  const wakingMessage = window.setTimeout(() => {
+    showSignupStatus("The signup service is waking up. This is normal, and we're retrying automatically. Please give us a minute.", "waiting");
+  }, 5000);
+  const extendedMessage = window.setTimeout(() => {
+    showSignupStatus("This is taking longer than usual. Your request has not been saved yet. We'll keep trying automatically for another 60 seconds.", "waiting");
+  }, 60000);
+  try {
+    while (Date.now() - startedAt < RETRY_DEADLINE_MS) {
+      const attemptStartedAt = Date.now();
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+      try {
+        const response = await fetch(signup.dataset.submitUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        if (response.ok) return "saved";
+        if (response.status >= 400 && response.status < 500 && response.status !== 429) return "invalid";
+      } catch {
+        // A suspended or recovering service may reset the connection. The bounded loop retries it.
+      } finally {
+        window.clearTimeout(timeout);
+      }
+      const remaining = RETRY_DEADLINE_MS - (Date.now() - startedAt);
+      if (remaining <= 0) break;
+      const attemptDuration = Date.now() - attemptStartedAt;
+      await new Promise((resolve) => window.setTimeout(resolve, Math.min(remaining, Math.max(0, RETRY_INTERVAL_MS - attemptDuration))));
+    }
+    return "failed";
+  } finally {
+    window.clearTimeout(wakingMessage);
+    window.clearTimeout(extendedMessage);
+  }
+}
+
+function showSignupStatus(message, variant, linkTechSupport = false) {
+  const status = signup?.querySelector("[data-signup-status]");
+  if (!status) return;
+  status.hidden = false;
+  status.classList.remove("border-green-300", "bg-green-50", "text-green-900", "border-blue-300", "bg-blue-50", "text-blue-900", "border-red-300", "bg-red-50", "text-red-900");
+  const classes = variant === "success"
+    ? ["border-green-300", "bg-green-50", "text-green-900"]
+    : variant === "waiting"
+      ? ["border-blue-300", "bg-blue-50", "text-blue-900"]
+      : ["border-red-300", "bg-red-50", "text-red-900"];
+  status.classList.add(...classes);
+  status.textContent = message;
+  if (linkTechSupport) {
+    const text = "techsupport@pentacoop.com";
+    const before = message.indexOf(text);
+    if (before >= 0) {
+      status.textContent = message.slice(0, before);
+      const link = document.createElement("a");
+      link.href = `mailto:${text}`;
+      link.className = "font-semibold underline";
+      link.textContent = text;
+      status.append(link, message.slice(before + text.length));
+    }
+  }
+}
 
 window.addEventListener("pagehide", () => {
   const email = signup?.querySelector("input[type=email]");

@@ -14,8 +14,6 @@ export default {
   applicationFormUrl: "https://applications.pentacoop.com/",
   mailingList: {
     name: "Email Signup",
-    submitUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfvce57NjEBBI7qx3l7eYCsjAy3j4yMqZVnjbclGOfZ9uDFIw/formResponse",
-    emailField: "emailAddress",
-    preferenceField: "entry.2074227584",
+    submitUrl: "https://applications.pentacoop.com/vacancy-subscriptions",
   },
 };
