@@ -50,7 +50,7 @@ npm run deploy # Build and publish dist/ to GitHub Pages
 
 - Public page content lives in `site/`.
 - Shared navigation lives in `site/_includes/navigation.njk`.
-- Current unit, application, analytics, and Google Forms configuration live in `site/_data/site.js`.
+- Current unit, application, analytics, and vacancy-notification configuration live in `site/_data/site.js`.
 - Images belong in `public/`; reference them with root-relative URLs (for example, `/penta-images/hero-exterior.jpg`).
 
 After any change, run `npm run build` and inspect the relevant file in `dist/`.
@@ -61,18 +61,22 @@ After any change, run `npm run build` and inspect the relevant file in `dist/`.
 
 - responsive navigation menu;
 - application-form link handling;
-- email signup validation and Google Forms submission;
+- email signup validation and vacancy-notification submission;
 - checkbox checkmarks and in-page toast messages;
 - TELUS-email help accordion;
 - GA4 page views and interaction events.
 
 Keep new interactive behavior here instead of adding client-side rendering or routing.
 
-## Google Forms signup
+## Vacancy notifications
 
-The mailing-list form on `apply.html` sends a `POST` request to the Google Forms endpoint configured in `site/_data/site.js`. The endpoint, field names, and preference labels are rendered into `data-*` attributes on the form, which `site/assets/site.js` reads at submit time.
+The signup form on `apply.html` sends a JSON `POST` request to the application service endpoint
+configured in `site/_data/site.js`. The endpoint and consent version are rendered into `data-*`
+attributes on the form, which `site/assets/site.js` reads at submit time.
 
-The Google field names in `site/_data/site.js` and the preference strings in `site/_includes/email-signup.njk` must continue to match the Google Form. Test an actual signup after changing either the endpoint or the preference labels.
+The bedroom values in `site/_includes/email-signup.njk` must continue to match the application
+service contract. Test an actual signup after changing the endpoint, consent version, or bedroom
+values.
 
 ## Analytics
 
