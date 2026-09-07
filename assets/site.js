@@ -98,7 +98,6 @@ signup?.addEventListener("submit", async (event) => {
     const result = await submitVacancyRequest({
       email: email.value,
       unitSizes,
-      consentVersion: signup.dataset.consentVersion,
     });
     if (result === "saved") {
       signup.reset();
