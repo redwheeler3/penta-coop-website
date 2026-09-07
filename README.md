@@ -71,12 +71,11 @@ Keep new interactive behavior here instead of adding client-side rendering or ro
 ## Vacancy notifications
 
 The signup form on `apply.html` sends a JSON `POST` request to the application service endpoint
-configured in `site/_data/site.js`. The endpoint and consent version are rendered into `data-*`
-attributes on the form, which `site/assets/site.js` reads at submit time.
+configured in `site/_data/site.js`. The endpoint is rendered into a `data-*` attribute on the form,
+which `site/assets/site.js` reads at submit time.
 
 The bedroom values in `site/_includes/email-signup.njk` must continue to match the application
-service contract. Test an actual signup after changing the endpoint, consent version, or bedroom
-values.
+service contract. Test an actual signup after changing the endpoint or bedroom values.
 
 ## Analytics
 
