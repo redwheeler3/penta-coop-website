@@ -13,10 +13,10 @@
     "DISCORD_GUILD_ID": "1415940719276855380"
   },
   "secrets": {
-    "required": ["DISCORD_BOT_TOKEN", "ALERT_WEBHOOK_URL", "ALERT_USER_ID"]
+    "required": ["DISCORD_BOT_TOKEN", "ALERT_WEBHOOK_URL"]
   },
   "triggers": {
-    "crons": ["17 * * * *"]
+    "crons": ["* * * * *"]
   },
   "durable_objects": {
     "bindings": [

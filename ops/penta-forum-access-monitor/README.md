@@ -1,6 +1,6 @@
 # Penta Forum Access Monitor
 
-This Cloudflare Worker checks Discord's native **Apply to Join** queue once per hour. It sends a
+This Cloudflare Worker checks Discord's native **Apply to Join** queue once per minute. It sends a
 private `penta-alerts` notification only when the queue becomes non-empty, the count increases, or
 an application remains waiting for 24 hours.
 
@@ -26,12 +26,10 @@ shell history, logs, or chat:
 ```powershell
 npx wrangler secret put DISCORD_BOT_TOKEN
 npx wrangler secret put ALERT_WEBHOOK_URL
-npx wrangler secret put ALERT_USER_ID
 ```
 
-`ALERT_USER_ID` is treated as a secret only to keep all deployment-specific identifiers out of the
-repository. The Worker explicitly allows only that user mention, so applicant-controlled text can
-never create mentions.
+The Worker disables all webhook mentions. Notification delivery relies on the private
+`penta-alerts` channel's normal notification settings.
 
 Routine validation and deployment:
 
@@ -42,7 +40,7 @@ npx wrangler deploy --dry-run
 npx wrangler deploy
 ```
 
-The hourly Cron runs at minute 17. Public Worker and preview URLs are disabled. Workers Logs are
+The Cron runs once per minute. Public Worker and preview URLs are disabled. Workers Logs are
 enabled at 100% sampling, but log only aggregate counts and sanitized error messages. The monitor
 is enabled by default once deployed.
 

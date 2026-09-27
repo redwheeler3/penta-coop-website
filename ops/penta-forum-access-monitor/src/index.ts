@@ -13,7 +13,6 @@ export interface Env {
   DISCORD_BOT_TOKEN: string;
   DISCORD_GUILD_ID: string;
   ALERT_WEBHOOK_URL: string;
-  ALERT_USER_ID: string;
   MONITOR_ENABLED?: string;
 }
 
@@ -68,7 +67,7 @@ export class ForumAccessMonitor extends DurableObject<Env> {
 
     const noun = pendingCount === 1 ? "request is" : "requests are";
     const delivered = await this.sendAlert(
-      `<@${this.env.ALERT_USER_ID}> — ${pendingCount} Penta forum access ${noun} waiting for review.`,
+      `${pendingCount} Penta forum access ${noun} waiting for review.`,
     );
     if (!delivered) throw new Error("Discord application alert delivery failed.");
 
@@ -108,7 +107,7 @@ export class ForumAccessMonitor extends DurableObject<Env> {
     if (lastErrorAlertAt && Date.now() - lastErrorAlertAt < ERROR_ALERT_COOLDOWN_MS) return;
 
     const delivered = await this.sendAlert(
-      `<@${this.env.ALERT_USER_ID}> — the Penta Forum Access Monitor has failed ` +
+      "The Penta Forum Access Monitor has failed " +
         `${nextFailures} consecutive checks. Review its Cloudflare logs.`,
     );
     if (delivered) await this.ctx.storage.put(LAST_ERROR_ALERT_AT_KEY, Date.now());
@@ -121,7 +120,7 @@ export class ForumAccessMonitor extends DurableObject<Env> {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           content,
-          allowed_mentions: { parse: [], users: [this.env.ALERT_USER_ID] },
+          allowed_mentions: { parse: [] },
         }),
         signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       });
