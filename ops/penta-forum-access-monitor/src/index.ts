@@ -35,6 +35,7 @@ export class ForumAccessMonitor extends DurableObject<Env> {
     try {
       await this.checkQueue();
       await this.ctx.storage.put(CONSECUTIVE_FAILURES_KEY, 0);
+      await this.ctx.storage.delete(LAST_ERROR_ALERT_AT_KEY);
     } catch (error) {
       await this.recordFailure(error);
       throw error;
@@ -69,7 +70,7 @@ export class ForumAccessMonitor extends DurableObject<Env> {
     const delivered = await this.sendAlert(
       `${pendingCount} Penta forum access ${noun} waiting for review.`,
     );
-    if (!delivered) throw new Error("Discord application alert delivery failed.");
+    if (!delivered) throw new Error("Forum access alert delivery failed.");
 
     await this.ctx.storage.put(LAST_ALERT_AT_KEY, now);
     console.log(`Sent forum access alert (${reason}; pending count ${pendingCount}).`);

@@ -2,7 +2,7 @@
 
 This Cloudflare Worker checks Discord's native **Apply to Join** queue once per minute. It sends a
 private `penta-alerts` notification only when the queue becomes non-empty, the count increases, or
-an application remains waiting for 24 hours.
+a request remains waiting for 24 hours.
 
 The monitor reads only the response's aggregate `total`. It does not log or store applicant
 profiles or application answers, and it has no code path for approving, rejecting, or kicking a
@@ -13,10 +13,9 @@ Discord user.
 The private Discord application is named `Penta Forum Access Monitor`. Its application ID is
 `1553601251751624786`. It is installed only in the Penta Co-op server.
 
-Discord may require the bot's role to have **Kick Members** to read native join requests. Confirm
-that requirement by testing once with the permission, removing it, and testing again. Leave the
-permission removed if the second test succeeds. Do not grant Administrator or enable privileged
-Gateway intents.
+Discord requires the bot's role to have **Kick, Approve, and Reject Members** to read native join
+requests; without it the endpoint returns HTTP 403. The Worker only reads the queue count and has no
+mutating Discord operation. Do not grant Administrator or enable privileged Gateway intents.
 
 ## Cloudflare configuration
 

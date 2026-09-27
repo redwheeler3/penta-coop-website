@@ -25,6 +25,8 @@ site/
   assets/site.js      Browser behavior: analytics, menu, form, accordion, toasts
 src/index.css         Tailwind CSS entry point and theme
 public/               Static assets copied directly to dist/
+ops/penta-forum-access-monitor/
+                      Cloudflare Worker for Discord forum access alerts
 ```
 
 ## Local development
@@ -76,6 +78,19 @@ which `site/assets/site.js` reads at submit time.
 
 The bedroom values in `site/_includes/email-signup.njk` must continue to match the application
 service contract. Test an actual signup after changing the endpoint or bedroom values.
+
+## Discord forum access monitoring
+
+`ops/penta-forum-access-monitor/` contains the separately deployed Cloudflare Worker that checks
+Discord's native **Apply to Join** queue once per minute. It posts to the private `penta-alerts`
+channel when the queue becomes non-empty, its count increases, or a request remains pending for 24
+hours. Empty checks are recorded only in Cloudflare logs.
+
+The Discord bot requires **Kick, Approve, and Reject Members** because Discord uses that permission
+to authorize reads of the join-request queue. The Worker has no code path for kicking, approving,
+or rejecting anyone, and it does not log or store applicant profiles or answers. See the
+[monitor runbook](ops/penta-forum-access-monitor/README.md) for secrets, validation, deployment,
+and pause instructions.
 
 ## Analytics
 
