@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "penta-forum-access-monitor",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-26",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "DISCORD_GUILD_ID": "1415940719276855380"
+  },
+  "secrets": {
+    "required": ["DISCORD_BOT_TOKEN", "ALERT_WEBHOOK_URL", "ALERT_USER_ID"]
+  },
+  "triggers": {
+    "crons": ["17 * * * *"]
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "MONITOR",
+        "class_name": "ForumAccessMonitor"
+      }
+    ]
+  },
+  "exports": {
+    "ForumAccessMonitor": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  }
+}
