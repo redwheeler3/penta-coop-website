@@ -4,6 +4,11 @@ This Cloudflare Worker checks Discord's native **Apply to Join** queue once per 
 private `penta-alerts` notification only when the queue becomes non-empty, the count increases, or
 a request remains waiting for 24 hours.
 
+Failed checks are logged immediately, but an error notification is sent only after 60 consecutive
+failed checks (about an hour at the one-minute cadence). A successful check resets the failure
+count and error-alert cooldown. An ongoing failure sends at most one error notification per 24
+hours; unsuccessful error-alert delivery is retried on the next failed check.
+
 The monitor reads only the response's aggregate `total`. It does not log or store applicant
 profiles or application answers, and it has no code path for approving, rejecting, or kicking a
 Discord user.

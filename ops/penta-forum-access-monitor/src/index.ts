@@ -21,7 +21,7 @@ const LAST_ALERT_AT_KEY = "last_alert_at";
 const CONSECUTIVE_FAILURES_KEY = "consecutive_failures";
 const LAST_ERROR_ALERT_AT_KEY = "last_error_alert_at";
 const REQUEST_TIMEOUT_MS = 10_000;
-const ERROR_ALERT_THRESHOLD = 3;
+const ERROR_ALERT_THRESHOLD = 60;
 const ERROR_ALERT_COOLDOWN_MS = 24 * 60 * 60_000;
 
 function errorDetail(error: unknown): string {
